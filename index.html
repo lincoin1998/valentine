@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Priti ❤️</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Segoe UI", sans-serif;
+    overflow: hidden;
+  }
+
+  .card {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    text-align: center;
+    max-width: 420px;
+    animation: fadeIn 1s ease;
+  }
+
+  h1 {
+    color: #ff3f6c;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  button {
+    padding: 12px 24px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  #yesBtn {
+    background: #ff3f6c;
+    color: white;
+  }
+
+  #noBtn {
+    background: #ddd;
+    position: absolute;
+    display: none;
+  }
+
+  @keyframes fadeIn {
+    from {opacity:0; transform: scale(0.9);}
+    to {opacity:1; transform: scale(1);}
+  }
+
+  .heart {
+    position: absolute;
+    color: red;
+    font-size: 22px;
+    animation: float 4s linear infinite;
+  }
+
+  @keyframes float {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(-800px);}
+  }
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+  <h1>Hey Priti… ❤️</h1>
+  <p>I made this just for you.</p>
+  <p>Because you deserve something special…</p>
+  <button onclick="nextStep()">Continue 💌</button>
+</div>
+
+<button id="noBtn" onclick="moveNo()">No 🙈</button>
+
+<script>
+let step = 0;
+
+function nextStep() {
+  const card = document.getElementById("card");
+
+  if (step === 0) {
+    card.innerHTML = `
+      <h1>Priti 💖</h1>
+      <p>Every time you smile, my heart forgets how to behave.</p>
+      <p>You make ordinary days feel magical.</p>
+      <button onclick="nextStep()">Next ✨</button>
+    `;
+  }
+
+  if (step === 1) {
+    card.innerHTML = `
+      <h1>A small secret 🤫</h1>
+      <p>I don’t need a perfect world…</p>
+      <p>I just need you in mine.</p>
+      <button onclick="showQuestion()">One more thing… 💕</button>
+    `;
+  }
+
+  step++;
+}
+
+function showQuestion() {
+  const card = document.getElementById("card");
+  card.innerHTML = `
+    <h1>So Priti… 🌹</h1>
+    <p>Will you be my Valentine?</p>
+    <button id="yesBtn" onclick="yesClicked()">Yes ❤️</button>
+  `;
+  document.getElementById("noBtn").style.display = "block";
+}
+
+function moveNo() {
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 50);
+  const noBtn = document.getElementById("noBtn");
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+function yesClicked() {
+  document.body.innerHTML = `
+    <div class="card">
+      <h1>You said YES 🥰🌹</h1>
+      <p>Priti, you just made my heart the happiest place on earth.</p>
+      <p>Thank you for being you…</p>
+      <p>Happy Valentine’s Day, my love ❤️</p>
+      <p>Now I owe you a lifetime of smiles 😘</p>
+    </div>
+  `;
+  createHearts();
+}
+
+function createHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = window.innerHeight + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 4000);
+  }, 300);
+}
+</script>
+
+</body>
+</html>
